@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Canvas</title>
+</head>
+<body>
+    <canvas id="tela" width="640" height="480"></canvas>
+
+    <script id="meu-vertex-shader" type="hlsl">
+        attribute vec4 posicao;
+
+        void main(){
+            gl_Position = posicao;
+        }
+    </script>
+    <script id="meu-fragment-shader" type="hlsl">
+        precision mediump float;
+
+        void main(){
+            gl_FragColor = vec4(1, 0, 0.5, 1);
+        }
+    </script>
+    <script src="./Render.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
