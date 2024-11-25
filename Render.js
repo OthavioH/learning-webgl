@@ -39,6 +39,32 @@ class Render {
     draw(){
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+        
+        this.gl.useProgram(this.programa);
+        var positions = [0,0,0,0,0.5,0,0.5,0,0];
+
+        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(positions), this.gl.STATIC_DRAW);
+
+        this.gl.enableVertexAttribArray(this.positionAttributeLocation);
+
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+
+        var size = 3;
+
+        var type = this.gl.FLOAT;
+        var normalize = false;
+
+        var stride = 0;
+
+        var offset = 0;
+
+        this.gl.vertexAttribPointer(this.positionAttributeLocation, size, type, normalize, stride, offset);
+
+        var primitiveType = this.gl.TRIANGLES;
+        var offset = 0;
+        var count = 3;
+
+        this.gl.drawArrays(primitiveType, offset, count);
     }
 
     static createSheader(/** @type {WebGLRenderingContext} */ gl, /** @type {GLenum} */ type, /** @type {String} */ source){
